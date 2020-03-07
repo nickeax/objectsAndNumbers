@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import 'vars.css';
+@import 'reset.css';
+@import 'menu.css';
+@import 'article.css';
+@import 'syntax.css';
+
+body {
+    font-family: 'Open Sans';
+    line-height: 1.4;
+    background-color: var(--faded);
+}
+
+header {
+    background-color: var(--mainCompCol);
+    box-shadow: 0 2px  2px rgba(0, 0, 0, 0.2);
+
+}
+footer {
+    background-color: var(--mainCompCol);
+    box-shadow: 0 -2px  2px rgba(0, 0, 0, 0.2);
+    
+    min-height: 20rem;
+}
+
+.hcontainer {
+    display: flex;
+    width: 60%;
+    height: 5rem;
+    margin: auto;
+}
+
+.fcontainer {
+    display: flex;
+    width: 60%;
+    height: 5rem;
+    margin: auto;
+}
+
+.container {
+    position: relative;
+    background-color: var(--mainCol);
+
+    width: var(--mainWidth);
+    height: 150vh;
+    margin: auto;
+
+    z-index: -666;
+}
+
+#output {
+    width: 60%;
+    margin: auto;
+    margin-top: 3rem;
+}
+
+.row {
+    background-color: #555;
+
+    border-bottom: 1px solid rgb(109, 104, 104);
+}
+
+.item {
+    display: inline-block;
+    width: 33.32%;
+    padding: 5px;
+    border-right: 1px solid rgb(168, 168, 168);
+    border-left: 1px solid rgb(168, 168, 168);
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.sourceCode {
+    display: inline-block;
+    background-color: #eee;
+    font-family: monospace;
+    overflow-x: scroll;
+}
+
+.item.bold {
+    color: var(--faded);
+    background-color: var(--mainCol);
+    border: var(--mainCol);
+}
+
+
+
+.point {
+    display: block;
+}
+
+.point-nested {
+    display: block;
+    margin-left: 4rem;
+}
+
+.point::before, .point-nested::before {
+    display: inline-block;
+    content: '';
+
+    height: var(--medLrg);
+    width: var(--medLrg);
+    margin-right: var(--smlMed);
+
+    border-radius: 50%;
+    
+}
+
+.point::before {
+    border: 4px dotted var(--mainColDarkest);
+}
+
+.point-nested::before {
+    border: 4px dashed var(--mainColDark);
+}
