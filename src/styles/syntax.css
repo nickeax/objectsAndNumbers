@@ -1,5 +1,6 @@
 code pre{
+    width: 90%;
     padding-left: var(--sml);
     background-color: #fff;
-    overflow: scroll;
+    overflow: auto;
 }
