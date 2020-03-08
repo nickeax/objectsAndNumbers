@@ -6,9 +6,9 @@
     --medLrg: 15px;
     --lrg: 35px;
     --vlrg: 125px;
-    --mainWidth: 50%;
+    --mainWidth: 60%;
 
-    --mainHue: 200;
+    --mainHue: 190;
     --mainSat: 30%;
     --mainLig: 50%;
     --mainFadedSat: 30%;
@@ -17,14 +17,16 @@
     --mainCol: hsl(var(--mainHue), var(--mainSat), var(--mainLig));
     --mainColDark: hsl(var(--mainHue), var(--mainSat), 20%);
     --mainColDarkest: hsl(var(--mainHue), var(--mainSat), 15%);
-    --mainColTrans: rgba(245, 92, 61, 0.5);
-    --mainColTrans: hsl(var(--mainHue), var(--mainSat), 15%);
     --mainColTrans: hsl(var(--mainHue), var(--mainSat), 15%);
     --mainCompCol: hsl(calc(var(--mainHue) + 180), var(--mainSat), var(--mainLig));
     --mainCompColDark: hsl(calc(var(--mainHue) + 180), var(--mainSat), 30%);
     --mainCompColDarkest: hsl(calc(var(--mainHue) + 180), var(--mainSat), 15%);
 
-    --highlight: rgb(238, 255, 0);
+    --syntaxBackground: rgb(32, 32, 32);
+
+    --monochromeText: rgb(19, 231, 0);
+    --highlight: hsl(calc(var(--mainHue) + 120), calc(var(--mainSat) + 70), 70%);
     --faded: hsl(0, 0%, 90%);
-    --darkest: rgba(0, 0, 0, 1);
+    --fadedDark: hsl(23, 59%, 17%);
+    --darkest: rgb(29, 28, 28);
 }

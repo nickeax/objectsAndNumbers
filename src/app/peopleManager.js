@@ -19,23 +19,23 @@ export class PeopleManager {
         }
     }
 
-    displayAll(rptHeader) {
-        output.innerHTML = "";
-        output.innerHTML += `<div class="row">`;
+    displayAll(rptHeader, prt) {
+        prt.innerHTML = "";
+        prt.innerHTML += `<div class="row">`;
         Object.keys(this.peopleArr[0]).forEach(x => {
-            output.innerHTML += `<span class="item bold">${x.slice(1,)}</span>`
+            prt.innerHTML += `<span class="item bold">${x.slice(1,)}</span>`
         });
-        output.innerHTML += `</div>`;
+        prt.innerHTML += `</div>`;
         this.peopleArr.forEach((x, i) => {
             if (i % rptHeader === 0 && i !== 0) {
-                output.innerHTML += `<div class="row">`;
-                Object.keys(x).forEach(y => output.innerHTML += `<span class="item bold">${y.slice(1,)}</span>`);
-                output.innerHTML += `</div>`;
+                prt.innerHTML += `<div class="row">`;
+                Object.keys(x).forEach(y => prt.innerHTML += `<span class="item bold">${y.slice(1,)}</span>`);
+                prt.innerHTML += `</div>`;
             }
 
-            output.innerHTML += `<div class="row">`;
-            Object.values(x).forEach(x => output.innerHTML += `<span class="item">${x}<//span>`);
-            output.innerHTML += `</div>`;
+            prt.innerHTML += `<div class="row">`;
+            Object.values(x).forEach(x => prt.innerHTML += `<span class="item">${x}<//span>`);
+            prt.innerHTML += `</div>`;
         })
     }
 

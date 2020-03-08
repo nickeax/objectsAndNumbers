@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/styles/index.css">
-    <link rel="stylesheet" href="./prism/prism.css">
-    <script src="index.js" type="module" defer></script>
+    <script src="./src/app/index.js" type="module" defer></script>
     <title>Objects and Arrays</title>
 </head>
 
@@ -14,9 +13,8 @@
     <header>
         <div class="menu">
             <ul>
-                <li><a href="https://instructionword.com" target="_blank">Home</a></li>
-                <li><a href="#">Source (GitHub)</a></li>
-                <li><a href="example.html" target="_blank">Completed Example</a></li>
+                <li><a href="https://instructionword.com" target="_blank">Home&bigtriangleup;</a></li>
+                <li><a href="https://instructionword.com?sid=45" target="_blank">Source (instructionword.com)&bigtriangleup;</a></li>
             </ul>
         </div>
     </header>
@@ -27,20 +25,203 @@
                 <div class="article-title">Objects and Arrays</div>
                 <div class="article-sub">javascript</div>
             </div>
-            <div class="article article-content">
-                <p>In this quick tutorial, we'll delve into the world of JavaScript arrays and see some examples of how they can be used when using Objects. The code in the examples will be simple and is intended as a starting point for more complex operations.</p>
-                <p>Let's get started!</p>
-                <p>First, let's create an array and add some elements to it:</p>
-            </div>
-        </div>
-            <code>
-                <pre>
-                    const names = ["Natalia", "Nick", "Timmy", "Ellen", "Jade", "Charles", "Joe", "Brad", "Sally", "Silly", "Jack", "Mark", "Mick", "Sue", "Jenny"];
-                </pre>
-            </code>
-        <div>
 
+            <div class="article article-content">
+                <p>In this guide, we'll build a data generator, capable of populating DOM elements with a table of
+                    random data. Below is an example of the output of the data generator.</p>
+
+                <div class="output" id="ex1"></div>
+
+                <p>The above table was generated simply by writing the following JavaScript:</p>
+                <code>
+                    <pre>
+let peopleManager = new PeopleManager();
+
+peopleManager.buildList(10);
+peopleManager.displayAll(2, document.querySelector('ex1'));</pre>
+                </code>
+
+                <p>
+                    In the above code, a <span class="js-class">PeopleManager</span> <span
+                        class="codeRef">peopleManager</span> is instantiated and then two methods are called on the new
+                    object:<br><span class="codeRef">peopleManager</span><span class="method">.buildList(10)</span> and
+                    <span class="codeRef">peopleManager</span><span class="method">.displayAll(2, document.querySelector('ex1'))</span>. The first
+                    method accepts the number of rows of data required and the second call actually displays the data in
+                    the specified parent element, along with a number to specify when the header should be repeated.
+                </p>
+                <p>
+                    And here's the result of plugging in two different values:
+                </p>
+                <code>
+                        <pre>
+let peopleManager2 = new PeopleManager();
+
+peopleManager2.buildList(23);
+peopleManager2.displayAll(8, document.querySelector('#ex2'));</pre>
+                    </code>
+                <div class="output" id="ex2"></div>
+                <p>
+                    So let's have a look at what goes into creating functionality like this. First, we will create a
+                    JavaScript class to hold each data object, called <span class="js-class">Person</span>:
+                </p>
+                <code>
+                        <pre>
+export class Person {
+    constructor(name, age, email) {
+        this._name = name;
+        this._age = age;
+        this._email = email;
+    }
+}</pre>
+                </code>
+                <p>
+                    All we have here is a simple class to hold some information about the data we'll be displaying later on.
+                </p>
+                <p>
+                    Now we'll explore the part of the program that does all the work, <span class="js-class">PeopleManager</span>.
+                </p>
+                <code>
+                    <pre>
+import { Person } from './person.js';
+
+const output = document.querySelector('#output');
+const names = ["Natalia", "Nick", "Timmy", "Ellen", "Jade", "Charles", "Joe", "Brad", "Sally", "Silly", "Jack", "Mark", "Mick", "Sue", "Jenny"];
+const domains = ["facebook", "google", "yahoo", "amazon", "youtube", "gmail", "outlook", "hotmail"];
+const tlds = ["com", "biz", "gov", "net", "org", "io"];
+
+export class PeopleManager {
+    constructor() {
+        this.peopleArr = [];
+    }
+    buildList(num) {
+        for (let i = 0; i < num; i++) {
+            this.peopleArr.push(new Person(
+                this.randomElement(names),
+                this.randomNum(100),
+                this.createEmail(this.randomElement(names))
+            ));
+        }
+    }
+
+    displayAll(rptHeader, prt) {
+        . . .
+    }
+
+    randomElement(arr) {
+        . . .
+    }
+
+    randomNum(max) {
+        . . .
+    createEmail(str) {
+        . . .
+    }
+}</pre>
+            </code>
+            <p>
+                The constructor takes no arguments, but initialises an empty array. This array will hold the randomly generated <span class="js-class">Person</span> objects. At the top of this file, you can see some arrays that will be used to create the random <span class="js-class">Person</span> objects, via methods of the <span class="js-class">PeopleManager</span> class.
+            </p>
+            <p>
+                The first <strong>method</strong> defined in <span class="js-class">PeopleManager</span> is <span class="codeRef">buildList(num)</span>. It takes in one value, the number of data items to create. A <span class="codeRef">for</span> loop iterates over the build process for the specified number. During the object building process, the following steps are carried out:<br><br>
+                <span class="point">The <span class="js-class">PeopleManager</span>.<span class="codeRef">peopleArr[]</span> has an anonymous <span class="js-class">Person</span> pushed onto it</span>
+                <span class="point">For each member property of the <span class="js-class">Person</span> a method of <span class="js-class">PeopleManager</span> is called</span>
+                <span class="point">The first one is <span class="codeRef">randomElement(names)</span>, which takes in an array (we'll see how it works soon)
+                <span class="point">The other two methods are very similar to <span class="codeRef">randomElement(names)</span></span>
+                
+            </p>
+            <p>
+                Let's look at <span class="codeRef">randomElement(names)</span>
+            </p>
+                <code>
+                    <pre>
+randomElement(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}                    </pre>
+                </code>
+                <p>
+                    That may look a little bit confusing, but the closer you look at it, the more you'll see some familiar things. The argument passed in is a reference to an array. In this case it's a global variable declared at the top of the module (there are better ways of doing this!). Then there's a <strong>return</strong> statement, that is just returning the array that was passed in. And that's exactly what's happening. The part that may seem confusing is how the element is indexed. Here's a break down: <br><br>
+                    <span class="point">The static <span class="codeRef">Math</span> object is used for two of its methods</span>
+                    <span class="point">The method <span class="codeRef">random()</span> returns a pseudo random number between 0 and 1</span>
+                    <span class="point">That number is multiplied by the length of the passed in array</span>
+                    <span class="point">Then the results of all that are passed to <span class="codeRef">Math.floor()</span> that returns an integer version of result</span>
+                    <span class="point">This final result is used as the array index, to select an element</span>
+                </p>
+                <p>
+                    This method allows an array of <em>any</em> size to be passed in and a random object could be returned each time. As an exercise, see if you can expand this expression into simpler parts. In other words, perform this current single line operation into a multi line operation. You could use as many as four.
+                </p>
+                <p>
+                    So the return value from <span class="codeRef">randomElement(names)</span> is now ready to use in the <span class="js-class">Person</span> constructor that will end up creating an anonymous object to push onto the <span class="js-class">PeopleManager</span>'s array, each time through the <strong>for</strong> loop.
+                </p>
+                <p>
+                    Next we have <span class="codeRef">randomNum(100)</span> being called with an input of '100'. Using the same <strong>Math</strong> built in methods from earlier, this simple method just returns a random number between 0 and the number passed in.
+                </p>
+                <code>
+                    <pre>
+randomNum(max) {
+    return Math.floor(Math.random() * max);
+} </pre>
+                </code>
+                <p>
+                    The final random property to be generated is returned from a call to <span class="codeRef">createEmail()</span>. 
+                </p>
+                <code>
+                    <pre>
+createEmail(str) {
+    return `${str.toLowerCase()}@${this.randomElement(domains)}.${this.randomElement(tlds)}`;
+} </pre>
+                </code>
+                <p>
+                    This method uses the previous two methods to build a string, representing an email. The names do not have any relationship to the names generated for the other <span class="js-class">Person</span> property. This was purely to show more usage of the method.
+                </p>
+                <p>
+                    And that's it for producing our objects. The <span class="js-class">PeopleManager</span> now has an array as a member, filled with anonymous <span class="js-class">Person</span> objects. Next, we'll look at how to display this data structure.
+                </p>
+                <p>
+                    The easy part now is to just print out the data to the screen! Below is the code for the method 
+                </p>
+                    <code>
+                        <pre>
+displayAll(rptHeader, prt) {
+    prt.innerHTML = "";
+    prt.innerHTML += `&lt;div class="row"&gt;`;
+    Object.keys(this.peopleArr[0]).forEach(x => {
+        prt.innerHTML += `&lt;span class="item bold"&gt;${x.slice(1,)}&lt;/span&gt;`
+    });
+    prt.innerHTML += `&lt;/div&gt;`;
+    this.peopleArr.forEach((x, i) => {
+        if (i % rptHeader === 0 && i !== 0) {
+            prt.innerHTML += `&lt;div class="row"&gt;`;
+            Object.keys(x).forEach(y => prt.innerHTML += `&lt;span class="item bold"&gt;${y.slice(1,)}&lt;/span&gt;`);
+            prt.innerHTML += `&lt;/div&gt;`;
+        }
+
+        prt.innerHTML += `&lt;div class="row"&gt;`;
+        Object.values(x).forEach(x => prt.innerHTML += `&lt;span class="item"&gt;${x}&lt;//span&gt;`);
+        prt.innerHTML += `&lt;/div&gt;`;
+    })
+}                        </pre>
+                    </code>
+                    <p>
+                        The data is printed, with a header. The interesting thing is, the information about what to use as the column titles, comes from the <span class="js-class">Person</span> itself. This information is returned by using a method on the <span class="codeRef">Object</span> global <strong>object.</strong> 
+                    </p>
+                    <code>
+                        <pre>
+Object.keys(this.peopleArr[0]);
+                        </pre>
+                    </code>
+                    <p>
+                        A reference to the first <span class="js-class">Person</span> in the <span class="js-class">PeopleManager</span> object's array is passed to the <strong>keys()</strong> method of the <span class="js-class">Object</span> <strong>object.</strong> This method returns an array listing the 'keys' of the object passed in. This provides the necessary column header values.
+                    </p>
+                    <p>
+                        The first character of each <strong>key</strong>  is 'sliced' because the name of each property is proceeded with an underscore. The resulting string is wrapped in an HTML <strong>span</strong> element.
+                    </p>
+                    <p>
+                        The process of displaying the actual data is very similar to above, and you can see from the code that more <strong>span</strong> elements are constructed for each column of each row. There is a check to see if another header needs to be inserted, and that's it!
+                    </p>
+                    <p>Hopefully this quick guide has shown you a little bit about objects, arrays and how to work with each.</p>
+            </div> <!-- END ARTICLE CONTENT -->
         </div>
+
     </div>
     <footer></footer>
 </body>

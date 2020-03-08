@@ -1,6 +1,81 @@
 code pre{
-    width: 90%;
-    padding-left: var(--sml);
-    background-color: #fff;
+    font-family: monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    background-color: var(--syntaxBackground);
+    background-image: linear-gradient(280deg, rgba(0, 0, 0, 0) 60%, rgba(255, 255, 255, 0.2) 100%);
+    color: var(--monochromeText);
+
+
+    border-radius: var(--sml);
+    border: 1px solid rgba(230, 230, 230, 0.562);
+
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.7);
+
+    margin: var(--lrg) 0;
+    width: 100%;
+    padding: var(--med);
     overflow: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    code pre {
+        font-size: 0.8rem;
+    }
+
+}
+@media only screen and (max-width: 900px) {
+    code pre {
+        font-size: 0.8rem;
+    }
+}
+
+.codeRef {
+    color: var(--fadedDark);
+    font-family: monospace;
+    font-style: italic;
+    font-size: 1.21rem;
+    font-weight: 800;
+}
+
+.method {
+    color: var(--darkest);
+    font-family: monospace;
+    font-style: italic;
+    font-size: 1.21rem;
+    font-weight: 800;
+}
+
+
+.js-class {
+    font-family: monospace;
+    font-size: 1.21rem;
+    color: var(--darkest);
+    background-image: linear-gradient(280deg, rgba(0, 0, 0, 0) 60%, rgba(255, 255, 255, 0.2) 100%);
+    font-weight: 600;
+    padding: var(--sml);
+
+    border: 1px solid var(--darkest);
+    border-radius: var(--sml);
+}
+
+@media only screen and (max-width: 600px) {
+    .js-class {
+        font-size: 0.9rem;
+    }
+
+    .codeRef {
+        font-size: 0.9rem;
+    }
+
+}
+@media only screen and (max-width: 900px) {
+    .js-class {
+        font-size: 0.9rem;
+    }
+
+    .codeRef {
+        font-size: 0.9rem;
+    }
+
 }

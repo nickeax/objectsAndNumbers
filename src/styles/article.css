@@ -48,3 +48,9 @@
     width: 100%;
     padding: var(--med);
 }
+
+@media only screen and (max-width: 900px) {
+    .article-content {
+        padding: var(--sml);
+    }
+}

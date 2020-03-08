@@ -8,7 +8,8 @@
 body {
     font-family: 'Open Sans';
     line-height: 1.4;
-    background-color: var(--faded);
+    /* background-color: var(--faded); */
+    background-color: rgb(224, 224, 224);
 }
 
 header {
@@ -21,6 +22,14 @@ footer {
     box-shadow: 0 -2px  2px rgba(0, 0, 0, 0.2);
     
     min-height: 20rem;
+}
+
+p {
+    margin-top: var(--lrg);
+}
+
+strong {
+    font-weight: 600;
 }
 
 .hcontainer {
@@ -38,20 +47,36 @@ footer {
 }
 
 .container {
-    position: relative;
     background-color: var(--mainCol);
 
     width: var(--mainWidth);
-    height: 150vh;
+    min-height: 150vh;
     margin: auto;
 
     z-index: -666;
 }
 
-#output {
-    width: 60%;
+@media only screen and (max-width: 1200px) {
+    .container {
+        width: 100%;
+        margin: 3px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .container {
+        font-size: 0.8rem;
+        width: 100%;
+        margin: 3px;
+    }
+}
+
+.output {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    width: 100%;
     margin: auto;
-    margin-top: 3rem;
+    margin: 2rem 0 1rem 0;
+
 }
 
 .row {
@@ -64,6 +89,8 @@ footer {
     display: inline-block;
     width: 33.32%;
     padding: 5px;
+    background-color: var(--mainColDark);
+    color: var(--faded);
     border-right: 1px solid rgb(168, 168, 168);
     border-left: 1px solid rgb(168, 168, 168);
     text-align: center;
@@ -73,20 +100,11 @@ footer {
     font-weight: bold;
 }
 
-.sourceCode {
-    display: inline-block;
-    background-color: #eee;
-    font-family: monospace;
-    overflow-x: scroll;
-}
-
 .item.bold {
     color: var(--faded);
     background-color: var(--mainCol);
     border: var(--mainCol);
 }
-
-
 
 .point {
     display: block;
