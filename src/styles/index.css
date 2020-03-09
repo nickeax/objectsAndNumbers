@@ -58,6 +58,7 @@ strong {
 
 @media only screen and (max-width: 1200px) {
     .container {
+        font-size: 0.8rem;
         width: 100%;
         margin: 3px;
     }
